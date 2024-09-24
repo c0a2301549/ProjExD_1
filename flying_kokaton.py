@@ -16,18 +16,25 @@ def main():
     kk_rct = kk_img.get_rect() #8-1
     kk_rct.center = 300, 200 #8-2
     tmr = 0
+
+    mv_x = 0
+    mv_y = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
         key_lst = pg.key.get_pressed() #8-3
         if key_lst[pg.K_UP]:
-            kk_rct.move_ip((0, -1))
+            mv_x, mv_y = -1, -1
         elif key_lst[pg.K_DOWN]:
-            kk_rct.move_ip((0, 1))
+            mv_x, mv_y = -1, 1
         elif key_lst[pg.K_LEFT]:
-            kk_rct.move_ip((-1, 0))
+            mv_x, mv_y = -1, 0
         elif key_lst[pg.K_RIGHT]:
-            kk_rct.move_ip((1, 0))
+            mv_x, mv_y = 1, 0
+        else:
+            mv_x, mv_y = -1, 0
+
+        kk_rct.move_ip((mv_x, mv_y))
 
         x = -(tmr % 3200)
 
